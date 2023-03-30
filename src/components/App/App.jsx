@@ -10,6 +10,7 @@ import { refreshUser } from 'redux/operations';
 import { useEffect } from 'react';
 import { RestrictedRoute } from 'components/RestrictedRoute/RestrictedRoute';
 import { CirclesWithBar } from 'react-loader-spinner';
+import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
 
 // const Layout = lazy(() => import('components/Layout/Layout'));
 // const Home = lazy(() => import('pages/Home/Home'));
@@ -58,7 +59,12 @@ const App = () => {
               <RestrictedRoute redirectTo="/contacts" component={<LogIn />} />
             }
           />
-          <Route path="/contacts" element={<ContactBook />} />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<ContactBook />} />
+            }
+          />
         </Route>
       </Routes>
     </div>
